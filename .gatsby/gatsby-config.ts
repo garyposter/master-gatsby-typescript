@@ -11,6 +11,17 @@ export default {
   plugins: [
     "gatsby-plugin-styled-components",
     {
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        emitSchema: {
+          "src/__generated__/gatsby-introspection.json": true,
+        },
+        emitPluginDocuments: {
+          "src/__generated__/gatsby-plugin-documents.graphql": true,
+        },
+      },
+    },
+    {
       resolve: "gatsby-source-sanity",
       options: {
         projectId: "0sjpba6w",
