@@ -17,6 +17,7 @@ const NavStyles = styled.nav`
     display: grid;
     grid-template-columns: 1fr 1fr auto 1fr 1fr;
     grid-gap: 2rem;
+    margin-top: -6rem;
   }
   li {
     --rotate: -2deg;
@@ -41,6 +42,12 @@ const NavStyles = styled.nav`
     &:hover {
       color: var(--red);
     }
+    &[aria-current="page"] {
+      color: var(--red);
+      .logo {
+        color: var(--black);
+      }
+    }
   }
 `;
 
@@ -60,7 +67,11 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Link to="/slicemasters">SliceMasters</Link>
+          <Link to="/slicemasters">
+            Slice
+            <wbr />
+            Masters
+          </Link>
         </li>
         <li>
           <Link to="/order">Order Ahead!</Link>
