@@ -1,17 +1,14 @@
 import { graphql } from "gatsby";
 import React from "react";
+import PizzaList from "../components/PizzaList";
 
 export default function PizzasPage({
   data,
 }: {
   data: GatsbyTypes.PizzasQuery;
 }) {
-  console.log(data);
-  return (
-    <>
-      <p>The many, many pizzas.</p>
-    </>
-  );
+  const pizzas = data.pizzas.nodes;
+  return <PizzaList pizzas={pizzas} />;
 }
 
 export const query = graphql`
