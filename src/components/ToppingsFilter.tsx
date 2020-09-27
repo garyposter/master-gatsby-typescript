@@ -5,13 +5,12 @@ import styled from "styled-components";
 const ToppingsStyles = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 4rem;
   a {
     display: grid;
-    padding: 5px;
     grid-template-columns: auto 1fr;
-    grid-gap: 0 1rem;
+    gap: 0 1rem;
     padding: 5px;
     background: var(--grey);
     align-items: center;
@@ -21,6 +20,9 @@ const ToppingsStyles = styled.div`
       padding: 2px 5px;
     }
     .active {
+      background: var(--yellow);
+    }
+    &:hover {
       background: var(--yellow);
     }
   }
