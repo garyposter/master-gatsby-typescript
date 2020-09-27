@@ -3719,4 +3719,9 @@ type PizzasQuery = { readonly pizzas: { readonly nodes: ReadonlyArray<(
       & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly toppings: Maybe<ReadonlyArray<Maybe<Pick<SanityTopping, 'id' | 'name'>>>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
     )> } };
 
+type AllToppingsDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AllToppingsDataQuery = { readonly toppings: { readonly nodes: ReadonlyArray<Pick<SanityTopping, 'name' | 'vegetarian' | 'id'>> }, readonly pizzas: { readonly nodes: ReadonlyArray<{ readonly toppings: Maybe<ReadonlyArray<Maybe<Pick<SanityTopping, 'name' | 'id'>>>> }> } };
+
 }
