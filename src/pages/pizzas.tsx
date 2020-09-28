@@ -7,7 +7,7 @@ export default function PizzasPage({
   data,
 }: {
   data: GatsbyTypes.PizzasQuery;
-}) {
+}): JSX.Element {
   const pizzas = data.pizzas.nodes;
   return (
     <>
