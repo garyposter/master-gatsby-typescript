@@ -1,6 +1,6 @@
-import { createGlobalStyle } from 'styled-components';
-import bg from '../assets/images/bg.svg';
-import stripes from '../assets/images/stripes.svg';
+import { createGlobalStyle } from "styled-components";
+import bg from "../assets/images/bg.svg";
+import stripes from "../assets/images/stripes.svg";
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -43,7 +43,7 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  ${'' /* This next line has a hack to make a ts error go away */}
+  ${"" /* This next line has a hack to make a ts error go away */}
   ${`.gatsby-image-wrapper img[src*=base64\\,]`} {
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;

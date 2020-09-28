@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <footer>
-      <p>&copy; Slick's Slices {new Date().getFullYear()}</p>
+      <p>&copy; Slick&apos;s Slices {new Date().getFullYear()}</p>
     </footer>
   );
 }

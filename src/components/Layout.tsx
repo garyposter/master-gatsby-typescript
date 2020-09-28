@@ -29,7 +29,11 @@ const ContentStyles = styled.div`
   padding: 2rem;
 `;
 
-export default function Layout({ children }: React.PropsWithChildren<{}>) {
+export default function Layout({
+  children,
+}: {
+  children: JSX.Element;
+}): JSX.Element {
   return (
     <>
       <GlobalStyles />
