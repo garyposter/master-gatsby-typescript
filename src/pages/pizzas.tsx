@@ -1,13 +1,15 @@
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import React from "react";
 import PizzaList from "../components/PizzaList";
 import ToppingsFilter from "../components/ToppingsFilter";
 
+interface PageContext {
+  name: string | undefined;
+}
+
 export default function PizzasPage({
   data,
-}: {
-  data: GatsbyTypes.PizzasQuery;
-}): JSX.Element {
+}: PageProps<GatsbyTypes.PizzasQuery, PageContext>): JSX.Element {
   const pizzas = data.pizzas.nodes;
   return (
     <>
@@ -18,8 +20,10 @@ export default function PizzasPage({
 }
 
 export const query = graphql`
-  query Pizzas {
-    pizzas: allSanityPizza {
+  query Pizzas($name: String) {
+    pizzas: allSanityPizza(
+      filter: { toppings: { elemMatch: { name: { eq: $name } } } }
+    ) {
       nodes {
         name
         id

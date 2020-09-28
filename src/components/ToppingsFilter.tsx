@@ -19,7 +19,7 @@ const ToppingsStyles = styled.div`
       background: white;
       padding: 2px 5px;
     }
-    .active {
+    &[aria-current="page"] {
       background: var(--yellow);
     }
     &:hover {
@@ -84,6 +84,10 @@ export default function ToppingsFilter(): JSX.Element {
   // link it up...
   return (
     <ToppingsStyles>
+      <Link to={`/pizzas`}>
+        <span className="name">Any Topping</span>
+        <span className="count">{pizzas.nodes.length}</span>
+      </Link>
       {countedToppings.map((topping) => (
         <Link to={`/topping/${topping.name}`} key={topping.id}>
           <span className="name">{topping.name}</span>

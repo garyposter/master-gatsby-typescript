@@ -32,7 +32,7 @@ async function turnPizzasIntoPages({ graphql, actions }: CreatePagesArgs) {
 
 async function turnToppingsIntoPages({ graphql, actions }: CreatePagesArgs) {
   // 1. get template
-  const toppingTemplate = path.resolve("./src/templates/Topping.tsx");
+  const toppingTemplate = path.resolve("./src/pages/pizzas.tsx");
   // 2. query all toppings
   const { data } = await graphql<any>(`
     query ListAllToppings {
@@ -56,9 +56,11 @@ async function turnToppingsIntoPages({ graphql, actions }: CreatePagesArgs) {
 
 export async function createPages(params: CreatePagesArgs) {
   // create pages dynamically
-  // 1. pizzas
-  await turnPizzasIntoPages(params);
-  // 2. toppings
-  await turnToppingsIntoPages(params);
-  // 3. Slicemasters
+  await Promise.all([
+    // 1. pizzas
+    turnPizzasIntoPages(params),
+    // 2. toppings
+    turnToppingsIntoPages(params),
+    // 3. Slicemasters
+  ]);
 }

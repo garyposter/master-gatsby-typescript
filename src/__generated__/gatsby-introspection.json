@@ -9956,7 +9956,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "slug",
+            "name": "name",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -9966,7 +9966,7 @@
             "defaultValue": null
           },
           {
-            "name": "name",
+            "name": "slug",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -10738,7 +10738,7 @@
         "description": null,
         "fields": [
           {
-            "name": "slug",
+            "name": "name",
             "description": null,
             "args": [],
             "type": {
@@ -10750,7 +10750,7 @@
             "deprecationReason": null
           },
           {
-            "name": "name",
+            "name": "slug",
             "description": null,
             "args": [],
             "type": {
@@ -12112,13 +12112,13 @@
             "deprecationReason": null
           },
           {
-            "name": "context___slug",
+            "name": "context___name",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "context___name",
+            "name": "context___slug",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

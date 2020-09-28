@@ -3179,13 +3179,13 @@ type SitePageConnection_groupArgs = {
 };
 
 type SitePageContext = {
-  readonly slug: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
 };
 
 type SitePageContextFilterInput = {
-  readonly slug: Maybe<StringQueryOperatorInput>;
   readonly name: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageEdge = {
@@ -3287,8 +3287,8 @@ enum SitePageFieldsEnum {
   internal___owner = 'internal.owner',
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
-  context___slug = 'context.slug',
   context___name = 'context.name',
+  context___slug = 'context.slug',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -3736,22 +3736,14 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type PizzasQueryVariables = Exact<{ [key: string]: never; }>;
+type PizzasQueryVariables = Exact<{
+  name: Maybe<Scalars['String']>;
+}>;
 
 
 type PizzasQuery = { readonly pizzas: { readonly nodes: ReadonlyArray<(
       Pick<SanityPizza, 'name' | 'id'>
       & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly toppings: Maybe<ReadonlyArray<Maybe<Pick<SanityTopping, 'id' | 'name'>>>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
-    )> } };
-
-type SingleToppingQueryVariables = Exact<{
-  name: Scalars['String'];
-}>;
-
-
-type SingleToppingQuery = { readonly topping: Maybe<Pick<SanityTopping, 'name' | 'vegetarian' | 'id'>>, readonly pizzas: { readonly nodes: ReadonlyArray<(
-      Pick<SanityPizza, 'id' | 'name'>
-      & { readonly slug: Maybe<Pick<SanitySlug, 'current'>> }
     )> } };
 
 type AllToppingsDataQueryVariables = Exact<{ [key: string]: never; }>;
