@@ -1,5 +1,38 @@
-import { CreatePagesArgs } from "gatsby";
+import { CreatePagesArgs, SourceNodesArgs } from "gatsby";
 import path from "path";
+import fetch from "isomorphic-fetch";
+
+async function fetchBeverages({
+  actions,
+  createNodeId,
+  createContentDigest,
+}: SourceNodesArgs) {
+  // fetch list of beverages
+  const res = await fetch("https://sampleapis.com/beers/api/ale");
+  const beers = await res.json();
+  // loop; for each, create Node
+  for (const beer of beers) {
+    const nodeData = {
+      id: createNodeId(`beer-${beer.name}`),
+      parent: null,
+      children: {},
+      internal: {
+        type: "Beer",
+        mediaType: "application/json",
+        contentDigest: createContentDigest(beer),
+      },
+    };
+    actions.createNode({
+      ...beer,
+      ...nodeData,
+    });
+  }
+}
+
+export async function sourceNodes(params: SourceNodesArgs) {
+  // fetch a list of beers and source them into Gatsby API
+  await Promise.all([fetchBeverages(params)]);
+}
 
 async function turnPizzasIntoPages({ graphql, actions }: CreatePagesArgs) {
   // 1. get template
