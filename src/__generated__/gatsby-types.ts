@@ -3721,6 +3721,16 @@ type StringQueryOperatorInput = {
 
 type GatsbySanityImageFluidFragment = Pick<SanityImageFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
 
+type PizzasQueryVariables = Exact<{
+  name: Maybe<Scalars['String']>;
+}>;
+
+
+type PizzasQuery = { readonly pizzas: { readonly nodes: ReadonlyArray<(
+      Pick<SanityPizza, 'name' | 'id'>
+      & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly toppings: Maybe<ReadonlyArray<Maybe<Pick<SanityTopping, 'id' | 'name'>>>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
+    )> } };
+
 type SinglePizzaQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -3735,16 +3745,6 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type PizzasQueryVariables = Exact<{
-  name: Maybe<Scalars['String']>;
-}>;
-
-
-type PizzasQuery = { readonly pizzas: { readonly nodes: ReadonlyArray<(
-      Pick<SanityPizza, 'name' | 'id'>
-      & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly toppings: Maybe<ReadonlyArray<Maybe<Pick<SanityTopping, 'id' | 'name'>>>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
-    )> } };
 
 type AllToppingsDataQueryVariables = Exact<{ [key: string]: never; }>;
 
