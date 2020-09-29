@@ -1,15 +1,30 @@
 import { graphql, PageProps } from "gatsby";
-import React, { SyntheticEvent, HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
+
+const AllBeers = styled.div`
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+`;
 
 const BeerListing = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-  border: 1px solid black;
+  border: 1px solid var(--grey);
   border-radius: 5px;
   padding: 1rem;
   margin: 1rem 0;
+  text-align: center;
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    display: grid;
+    align-items: center;
+    font-size: 10px;
+  }
 `;
 
 const BeerInfo = styled.div``;
@@ -58,21 +73,21 @@ function Rating({ average, reviews }: GatsbyTypes.BeerRating): JSX.Element {
   );
 }
 
-function missingImage(ev: SyntheticEvent<HTMLImageElement, Event>) {
-  // it's a red dot. Because it was easy.
-  ev.currentTarget.src =
-    "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
-}
+// this was a cool solution onError. The CSS approach now is from Wes Bos.
+// function missingImage(ev: SyntheticEvent<HTMLImageElement, Event>) {
+//   ev.currentTarget.src =
+//     "data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==";
+// }
 
 function Beer({ name, price, rating, image }: BeerQuery): JSX.Element {
   return (
     <BeerListing>
+      <img src={image} alt={name} />
       <BeerInfo>
         <h3>{name}</h3>
         <h4>{price}</h4>
         {rating && <Rating {...rating} />}
       </BeerInfo>
-      <img src={image} title={name} alt="packaging" onError={missingImage} />
     </BeerListing>
   );
 }
@@ -84,9 +99,11 @@ export default function BeveragesPage({
   return (
     <>
       <h2>View our {beers.length} available beverages! Dine-in only.</h2>
-      {beers.map((beer) => (
-        <Beer key={beer.id} {...beer} />
-      ))}
+      <AllBeers>
+        {beers.map((beer) => (
+          <Beer key={beer.id} {...beer} />
+        ))}
+      </AllBeers>
     </>
   );
 }
