@@ -3935,6 +3935,14 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type BeveragesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BeveragesQuery = { readonly beers: { readonly nodes: ReadonlyArray<(
+      Pick<Beer, 'name' | 'price' | 'image' | 'id'>
+      & { readonly rating: Maybe<Pick<BeerRating, 'average' | 'reviews'>> }
+    )> } };
+
 type AllToppingsDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
