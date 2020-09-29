@@ -3943,6 +3943,17 @@ type BeveragesQuery = { readonly beers: { readonly nodes: ReadonlyArray<(
       & { readonly rating: Maybe<Pick<BeerRating, 'average' | 'reviews'>> }
     )> } };
 
+type SlicemastersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SlicemastersQuery = { readonly people: (
+    Pick<SanityPersonConnection, 'totalCount'>
+    & { readonly nodes: ReadonlyArray<(
+      Pick<SanityPerson, 'id' | 'description' | 'name'>
+      & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
+    )> }
+  ) };
+
 type AllToppingsDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
