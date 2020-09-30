@@ -117,11 +117,16 @@ async function turnSlicemastersIntoPages({
   Array.from({ length: pageCount }).forEach((_, i) => {
     const index = i + 1;
     const fromPerson = i * pageSize;
-    const toPerson = Math.min(index * pageSize, data.people.totalCount);
+    const pageContext = {
+      skip: fromPerson,
+      limit: pageSize,
+      currentPage: index,
+    };
+    console.log(pageContext);
     actions.createPage({
       path: `slicemasters/${i + 1}`,
       component: path.resolve("./src/pages/slicemasters.tsx"),
-      context: { from: fromPerson, to: toPerson, currentPage: index },
+      context: pageContext,
     });
   });
 }
