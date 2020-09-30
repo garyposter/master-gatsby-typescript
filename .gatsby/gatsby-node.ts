@@ -1,6 +1,9 @@
 import { CreatePagesArgs, SourceNodesArgs } from "gatsby";
 import path from "path";
 import fetch from "isomorphic-fetch";
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env" });
 
 async function fetchBeverages({
   actions,
@@ -87,6 +90,42 @@ async function turnToppingsIntoPages({ graphql, actions }: CreatePagesArgs) {
   });
 }
 
+async function turnSlicemastersIntoPages({
+  graphql,
+  actions,
+}: CreatePagesArgs) {
+  // query Slicemasters
+  const { data } = await graphql<any>(`
+    query ListAllSlicemasters {
+      people: allSanityPerson {
+        totalCount
+        nodes {
+          name
+          id
+          slug {
+            current
+          }
+        }
+      }
+    }
+  `);
+  // TODO turn Slicemaster into their own page
+  // figure out how many pages there are based on slicemaster count and GATSBY_PAGE_SIZE
+  const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
+  const pageCount = Math.ceil(data.people.totalCount / pageSize);
+  // create the pages (with slicemasters.tsx that can be filtered)
+  Array.from({ length: pageCount }).forEach((_, i) => {
+    const index = i + 1;
+    const fromPerson = i * pageSize;
+    const toPerson = Math.min(index * pageSize, data.people.totalCount);
+    actions.createPage({
+      path: `slicemasters/${i + 1}`,
+      component: path.resolve("./src/pages/slicemasters.tsx"),
+      context: { from: fromPerson, to: toPerson, currentPage: index },
+    });
+  });
+}
+
 export async function createPages(params: CreatePagesArgs) {
   // create pages dynamically
   await Promise.all([
@@ -95,5 +134,6 @@ export async function createPages(params: CreatePagesArgs) {
     // 2. toppings
     turnToppingsIntoPages(params),
     // 3. Slicemasters
+    turnSlicemastersIntoPages(params),
   ]);
 }

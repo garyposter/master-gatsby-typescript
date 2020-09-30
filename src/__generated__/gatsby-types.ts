@@ -3370,11 +3370,17 @@ type SitePageConnection_groupArgs = {
 type SitePageContext = {
   readonly name: Maybe<Scalars['String']>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly from: Maybe<Scalars['Int']>;
+  readonly to: Maybe<Scalars['Int']>;
+  readonly currentPage: Maybe<Scalars['Int']>;
 };
 
 type SitePageContextFilterInput = {
   readonly name: Maybe<StringQueryOperatorInput>;
   readonly slug: Maybe<StringQueryOperatorInput>;
+  readonly from: Maybe<IntQueryOperatorInput>;
+  readonly to: Maybe<IntQueryOperatorInput>;
+  readonly currentPage: Maybe<IntQueryOperatorInput>;
 };
 
 type SitePageEdge = {
@@ -3478,6 +3484,9 @@ enum SitePageFieldsEnum {
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   context___name = 'context.name',
   context___slug = 'context.slug',
+  context___from = 'context.from',
+  context___to = 'context.to',
+  context___currentPage = 'context.currentPage',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -3521,13 +3530,14 @@ enum SitePageFieldsEnum {
   pluginCreator___version = 'pluginCreator.version',
   pluginCreator___pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginCreator.pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginCreator___pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginCreator.pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
-  pluginCreator___pluginOptions___projectId = 'pluginCreator.pluginOptions.projectId',
-  pluginCreator___pluginOptions___dataset = 'pluginCreator.pluginOptions.dataset',
-  pluginCreator___pluginOptions___watchMode = 'pluginCreator.pluginOptions.watchMode',
   pluginCreator___pluginOptions___projectRoot = 'pluginCreator.pluginOptions.projectRoot',
   pluginCreator___pluginOptions___configDir = 'pluginCreator.pluginOptions.configDir',
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
+  pluginCreator___pluginOptions___projectId = 'pluginCreator.pluginOptions.projectId',
+  pluginCreator___pluginOptions___dataset = 'pluginCreator.pluginOptions.dataset',
+  pluginCreator___pluginOptions___watchMode = 'pluginCreator.pluginOptions.watchMode',
+  pluginCreator___pluginOptions___token = 'pluginCreator.pluginOptions.token',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___ssrAPIs = 'pluginCreator.ssrAPIs',
   pluginCreator___pluginFilepath = 'pluginCreator.pluginFilepath',
@@ -3715,13 +3725,14 @@ enum SitePluginFieldsEnum {
   version = 'version',
   pluginOptions___emitSchema___src___generated___gatsby_introspection_json = 'pluginOptions.emitSchema.src___generated___gatsby_introspection_json',
   pluginOptions___emitPluginDocuments___src___generated___gatsby_plugin_documents_graphql = 'pluginOptions.emitPluginDocuments.src___generated___gatsby_plugin_documents_graphql',
-  pluginOptions___projectId = 'pluginOptions.projectId',
-  pluginOptions___dataset = 'pluginOptions.dataset',
-  pluginOptions___watchMode = 'pluginOptions.watchMode',
   pluginOptions___projectRoot = 'pluginOptions.projectRoot',
   pluginOptions___configDir = 'pluginOptions.configDir',
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
+  pluginOptions___projectId = 'pluginOptions.projectId',
+  pluginOptions___dataset = 'pluginOptions.dataset',
+  pluginOptions___watchMode = 'pluginOptions.watchMode',
+  pluginOptions___token = 'pluginOptions.token',
   nodeAPIs = 'nodeAPIs',
   ssrAPIs = 'ssrAPIs',
   pluginFilepath = 'pluginFilepath',
@@ -3835,13 +3846,14 @@ type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 type SitePluginPluginOptions = {
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchema>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocuments>;
-  readonly projectId: Maybe<Scalars['String']>;
-  readonly dataset: Maybe<Scalars['String']>;
-  readonly watchMode: Maybe<Scalars['Boolean']>;
   readonly projectRoot: Maybe<Scalars['String']>;
   readonly configDir: Maybe<Scalars['String']>;
   readonly path: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
+  readonly projectId: Maybe<Scalars['String']>;
+  readonly dataset: Maybe<Scalars['String']>;
+  readonly watchMode: Maybe<Scalars['Boolean']>;
+  readonly token: Maybe<Scalars['String']>;
 };
 
 type SitePluginPluginOptionsEmitPluginDocuments = {
@@ -3863,13 +3875,14 @@ type SitePluginPluginOptionsEmitSchemaFilterInput = {
 type SitePluginPluginOptionsFilterInput = {
   readonly emitSchema: Maybe<SitePluginPluginOptionsEmitSchemaFilterInput>;
   readonly emitPluginDocuments: Maybe<SitePluginPluginOptionsEmitPluginDocumentsFilterInput>;
-  readonly projectId: Maybe<StringQueryOperatorInput>;
-  readonly dataset: Maybe<StringQueryOperatorInput>;
-  readonly watchMode: Maybe<BooleanQueryOperatorInput>;
   readonly projectRoot: Maybe<StringQueryOperatorInput>;
   readonly configDir: Maybe<StringQueryOperatorInput>;
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
+  readonly projectId: Maybe<StringQueryOperatorInput>;
+  readonly dataset: Maybe<StringQueryOperatorInput>;
+  readonly watchMode: Maybe<BooleanQueryOperatorInput>;
+  readonly token: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePluginSortInput = {
