@@ -3957,6 +3957,16 @@ type SlicemastersQuery = { readonly people: (
     )> }
   ) };
 
+type SlicemasterQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
+
+
+type SlicemasterQuery = { readonly person: Maybe<(
+    Pick<SanityPerson, 'description' | 'name'>
+    & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
+  )> };
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 

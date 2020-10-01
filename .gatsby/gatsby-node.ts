@@ -109,7 +109,6 @@ async function turnSlicemastersIntoPages({
       }
     }
   `);
-  // TODO turn Slicemaster into their own page
   // figure out how many pages there are based on slicemaster count and GATSBY_PAGE_SIZE
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
   const pageCount = Math.ceil(data.people.totalCount / pageSize);
@@ -122,11 +121,18 @@ async function turnSlicemastersIntoPages({
       limit: pageSize,
       currentPage: index,
     };
-    console.log(pageContext);
     actions.createPage({
       path: `slicemasters/${i + 1}`,
       component: path.resolve("./src/pages/slicemasters.tsx"),
       context: pageContext,
+    });
+  });
+  // create each individual Slicemaster's page.
+  data.people.nodes.forEach(({ slug: { current } }) => {
+    actions.createPage({
+      path: `slicemasters/${current}`,
+      component: path.resolve("./src/templates/Slicemaster.tsx"),
+      context: { slug: current },
     });
   });
 }
