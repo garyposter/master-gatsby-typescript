@@ -2,11 +2,7 @@ import { graphql, Link, PageProps } from "gatsby";
 import React from "react";
 import Img from "gatsby-image";
 import styled from "styled-components";
-
-const SlicemasterNav = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
+import Pagination from "../components/Pagination";
 
 const SlicemasterGrid = styled.div`
   display: grid;
@@ -51,25 +47,16 @@ export default function SlicemastersPage({
   data,
   pageContext: { skip, limit, currentPage },
 }: PageProps<GatsbyTypes.SlicemastersQuery, PageContext>): JSX.Element {
-  const count = data.people.totalCount;
-  let previousHref, nextHref;
-  if (currentPage > 1) {
-    previousHref = `/slicemasters/${currentPage - 1}`;
-  }
-  if (skip + limit < count) {
-    nextHref = `/slicemasters/${currentPage + 1}`;
-  }
   const people = data.people.nodes;
   return (
     <>
-      {previousHref || nextHref ? (
-        <SlicemasterNav>
-          <div>
-            {previousHref ? <Link to={previousHref}>Previous page</Link> : null}
-          </div>
-          <div>{nextHref ? <Link to={nextHref}>Next page</Link> : null}</div>
-        </SlicemasterNav>
-      ) : null}
+      <Pagination
+        base="slicemasters"
+        skip={skip || 0}
+        limit={limit || parseInt(process.env.GATSBY_PAGE_SIZE || "")}
+        currentPage={currentPage || 1}
+        totalCount={data.people.totalCount}
+      />
       <SlicemasterGrid>
         {people.map((person) => {
           const image = person.image?.asset?.fluid;
@@ -91,7 +78,7 @@ export default function SlicemastersPage({
 }
 
 export const query = graphql`
-  query Slicemasters($limit: Int, $skip: Int) {
+  query Slicemasters($skip: Int = 0, $limit: Int = 4) {
     people: allSanityPerson(skip: $skip, limit: $limit) {
       totalCount
       nodes {

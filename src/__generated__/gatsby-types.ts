@@ -3944,8 +3944,8 @@ type SinglePizzaQuery = { readonly pizza: Maybe<(
   )> };
 
 type SlicemastersQueryVariables = Exact<{
-  limit: Maybe<Scalars['Int']>;
-  skip: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
 }>;
 
 
