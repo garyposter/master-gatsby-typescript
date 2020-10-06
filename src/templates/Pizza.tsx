@@ -3,6 +3,7 @@ import { graphql, Link, PageProps } from "gatsby";
 import Img from "gatsby-image";
 import Dinero from "dinero.js";
 import styled from "styled-components";
+import SEO from "../components/SEO";
 
 interface PageContext {
   name: string;
@@ -42,6 +43,11 @@ export default function SinglePizzaPage(
   }
   return (
     <>
+      <SEO
+        title={pizza?.name || "Pizza!"}
+        image={pizza?.image?.asset?.fluid?.src}
+        location={props.location}
+      />
       <h2>
         Look! It&apos;s {pizza?.name}!{" "}
         {price ? <span>It&apos;s only {price.toFormat()}.</span> : ""}

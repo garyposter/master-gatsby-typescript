@@ -1,6 +1,7 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 import Img from "gatsby-image";
+import SEO from "../components/SEO";
 
 export default function SingleSlicemasterPage(
   props: PageProps<GatsbyTypes.SlicemasterQuery>
@@ -8,19 +9,27 @@ export default function SingleSlicemasterPage(
   const person = props.data.person;
   const imgData = person?.image?.asset?.fluid;
   return (
-    <div className="center">
-      {imgData ? (
-        <div>
-          <Img fluid={imgData} alt={person?.name || ""} />
-        </div>
-      ) : (
-        ""
-      )}
-      <h2>
-        <span className="mark">{person?.name}</span>
-      </h2>
-      <p>{person?.description}</p>
-    </div>
+    <>
+      <SEO
+        title={`${person?.name || "Anonymous"} - Slicemaster`}
+        location={props.location}
+        image={imgData?.src}
+        description={person?.description}
+      />
+      <div className="center">
+        {imgData ? (
+          <div>
+            <Img fluid={imgData} alt={person?.name || ""} />
+          </div>
+        ) : (
+          ""
+        )}
+        <h2>
+          <span className="mark">{person?.name}</span>
+        </h2>
+        <p>{person?.description}</p>
+      </div>
+    </>
   );
 }
 

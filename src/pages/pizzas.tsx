@@ -1,6 +1,7 @@
 import { graphql, PageProps } from "gatsby";
 import React from "react";
 import PizzaList from "../components/PizzaList";
+import SEO from "../components/SEO";
 import ToppingsFilter from "../components/ToppingsFilter";
 
 interface PageContext {
@@ -9,10 +10,16 @@ interface PageContext {
 
 export default function PizzasPage({
   data,
+  pageContext,
+  location,
 }: PageProps<GatsbyTypes.PizzasQuery, PageContext>): JSX.Element {
   const pizzas = data.pizzas.nodes;
   return (
     <>
+      <SEO
+        title={pageContext.name ? `Pizzas with ${name}` : "All Pizzas"}
+        location={location}
+      />
       <ToppingsFilter />
       <PizzaList pizzas={pizzas} />
     </>

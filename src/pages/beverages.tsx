@@ -1,6 +1,7 @@
 import { graphql, PageProps } from "gatsby";
 import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
+import SEO from "../components/SEO";
 
 const AllBeers = styled.div`
   display: grid;
@@ -94,10 +95,15 @@ function Beer({ name, price, rating, image }: BeerQuery): JSX.Element {
 
 export default function BeveragesPage({
   data,
+  location,
 }: PageProps<GatsbyTypes.BeveragesQuery>): JSX.Element {
   const beers = data.beers.nodes;
   return (
     <>
+      <SEO
+        title={`Beers! We have ${beers.length} in stock`}
+        location={location}
+      />
       <h2>View our {beers.length} available beverages! Dine-in only.</h2>
       <AllBeers>
         {beers.map((beer) => (
