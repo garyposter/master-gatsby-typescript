@@ -3983,6 +3983,19 @@ type BeveragesQuery = { readonly beers: { readonly nodes: ReadonlyArray<(
       & { readonly rating: Maybe<Pick<BeerRating, 'average' | 'reviews'>> }
     )> } };
 
+type OrderPizzasQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type OrderPizzasQuery = { readonly pizzas: { readonly nodes: ReadonlyArray<(
+      Pick<SanityPizza, 'name' | 'id' | 'price'>
+      & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
+    )> } };
+
+type usersgarydevmasterGatsbygatsbysrccomponentsSeoTsx735375095QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type usersgarydevmasterGatsbygatsbysrccomponentsSeoTsx735375095Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'twitter'>> }> };
+
 type AllToppingsDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
