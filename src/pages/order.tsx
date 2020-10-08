@@ -7,16 +7,20 @@ import calculatePizzaPrice, { sizes } from "../utils/calculatePizzaPrice";
 import formatMoney from "../utils/formatMoney";
 import OrderStyles from "../styles/OrderStyles";
 import MenuItemStyles from "../styles/MenuItemStyles";
+import usePizza, { Inputs } from "../utils/usePizza";
+import PizzaOrder from "../components/PizzaOrder";
 
-// formik is popular
+// formik is popular, who knew.
 
 export default function OrderPage({
-  data: { pizzas },
+  data,
   location,
 }: PageProps<GatsbyTypes.OrderPizzasQuery>): JSX.Element {
-  const [values, updateValue] = useForm({
-    name: "",
-    email: "",
+  const [values, updateValue] = useForm<Inputs>({ name: "", email: "" });
+  const pizzas = data.pizzas.nodes;
+  const { order, addToOrder, removeFromOrder } = usePizza({
+    pizzas,
+    inputs: values,
   });
   return (
     <>
@@ -41,7 +45,7 @@ export default function OrderPage({
         </fieldset>
         <fieldset className="menu">
           <legend>Menu</legend>
-          {pizzas.nodes.map((pizza) => {
+          {pizzas.map((pizza) => {
             const imgData = pizza?.image?.asset?.fluid;
             return (
               <MenuItemStyles key={pizza.id}>
@@ -51,7 +55,11 @@ export default function OrderPage({
                 </div>
                 <div>
                   {sizes.map((size) => (
-                    <button key={size} type="button">
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => addToOrder({ id: pizza.id, size })}
+                    >
                       {size}{" "}
                       {formatMoney(
                         calculatePizzaPrice(pizza.price || NaN, size)
@@ -65,6 +73,11 @@ export default function OrderPage({
         </fieldset>
         <fieldset className="order">
           <legend>Order</legend>
+          <PizzaOrder
+            pizzas={pizzas}
+            order={order}
+            removeFromOrder={removeFromOrder}
+          />
         </fieldset>
       </OrderStyles>
     </>

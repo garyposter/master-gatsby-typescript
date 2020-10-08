@@ -4,9 +4,9 @@ interface Mapping {
   [key: string]: number | string;
 }
 
-export default function useForm(
-  defaults: Mapping
-): [Mapping, (e: React.ChangeEvent<HTMLInputElement>) => void] {
+export default function useForm<M = Mapping>(
+  defaults: M
+): [M, (e: React.ChangeEvent<HTMLInputElement>) => void] {
   const [values, setValues] = useState(defaults);
   function updateValue(e: React.ChangeEvent<HTMLInputElement>) {
     let value: number | string = e.target?.value;
