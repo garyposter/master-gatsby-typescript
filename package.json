@@ -12,7 +12,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "netlify": "netlify dev",
-    "prebuild": "netlify-lambda install"
+    "build:lambda": "netlify-lambda build functions",
+    "prebuild": "netlify-lambda install functions"
   },
   "eslintConfig": {
     "extends": [
@@ -23,6 +24,7 @@
     }
   },
   "dependencies": {
+    "@types/aws-lambda": "^8.10.63",
     "@types/dinero.js": "^1.6.5",
     "@types/node": "^14.11.2",
     "@types/react-helmet": "^6.1.0",
@@ -39,7 +41,6 @@
     "gatsby-source-sanity": "^6.0.4",
     "isomorphic-fetch": "^2.2.1",
     "netlify-cli": "^2.64.1",
-    "netlify-lambda": "^2.0.1",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -47,9 +48,11 @@
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.10.4",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
     "babel-eslint": "^10.1.0",
+    "babel-preset-gatsby": "^0.5.13",
     "cross-env": "^7.0.2",
     "eslint": "^7.10.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -62,6 +65,7 @@
     "eslint-plugin-react": "^7.21.2",
     "eslint-plugin-react-hooks": "^4.1.2",
     "esm": "^3.2.25",
+    "netlify-lambda": "^2.0.1",
     "prettier": "^2.1.2"
   },
   "repository": {
