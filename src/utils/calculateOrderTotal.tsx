@@ -1,5 +1,5 @@
 import calculatePizzaPrice from "./calculatePizzaPrice";
-import { OrderedPizza, Pizza } from "./usePizza";
+import { OrderedPizza, Pizza } from "../components/OrderContext";
 
 export default function calculateOrderTotal(
   order: OrderedPizza[],

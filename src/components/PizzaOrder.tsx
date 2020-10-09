@@ -1,6 +1,6 @@
 import React from "react";
 import MenuItemStyles from "../styles/MenuItemStyles";
-import { OrderedPizza, Pizza } from "../utils/usePizza";
+import { OrderedPizza, Pizza } from "./OrderContext";
 import Img from "gatsby-image";
 import formatMoney from "../utils/formatMoney";
 import calculatePizzaPrice from "../utils/calculatePizzaPrice";
@@ -25,13 +25,13 @@ export default function PizzaOrder({
         if (!pizza) return;
         const imageData = pizza.image?.asset?.fluid;
         return (
-          // singleOrder.id is not a good key
-          <MenuItemStyles key={`${singleOrder.id} ${singleOrder.size}`}>
+          <MenuItemStyles
+            key={`${singleOrder.id} ${singleOrder.size} ${index}`}
+          >
             {imageData && <Img fluid={imageData} />}
-            <h2>
-              {singleOrder.size}: {pizza.name}
-            </h2>
+            <h2>{pizza.name}</h2>
             <p>
+              {singleOrder.size}:{" "}
               {formatMoney(
                 calculatePizzaPrice(pizza.price || NaN, singleOrder.size)
               )}

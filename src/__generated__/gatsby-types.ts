@@ -3991,14 +3991,4 @@ type OrderPizzasQuery = { readonly pizzas: { readonly nodes: ReadonlyArray<(
       & { readonly slug: Maybe<Pick<SanitySlug, 'current'>>, readonly image: Maybe<{ readonly asset: Maybe<{ readonly fluid: Maybe<GatsbySanityImageFluidFragment> }> }> }
     )> } };
 
-type usersgarydevmasterGatsbygatsbysrccomponentsSeoTsx735375095QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type usersgarydevmasterGatsbygatsbysrccomponentsSeoTsx735375095Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'twitter'>> }> };
-
-type AllToppingsDataQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type AllToppingsDataQuery = { readonly toppings: { readonly nodes: ReadonlyArray<Pick<SanityTopping, 'name' | 'vegetarian' | 'id'>> }, readonly pizzas: { readonly nodes: ReadonlyArray<{ readonly toppings: Maybe<ReadonlyArray<Maybe<Pick<SanityTopping, 'name' | 'id'>>>> }> } };
-
 }

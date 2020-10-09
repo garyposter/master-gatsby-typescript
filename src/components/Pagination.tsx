@@ -61,6 +61,7 @@ export default function Pagination({
       <div>
         {Array.from({ length: pageCount }, (_, ix) => (
           <Link
+            key={ix}
             className={currentPage === ix + 1 ? "current" : undefined}
             to={`/${base}/${ix > 0 ? ix + 1 : ""}`}
           >

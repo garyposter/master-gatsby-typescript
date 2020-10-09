@@ -1,11 +1,5 @@
-import { useState } from "react";
-import { sizeValues } from "./calculatePizzaPrice";
-
-export type Pizza = GatsbyTypes.OrderPizzasQuery["pizzas"]["nodes"][number];
-export interface OrderedPizza {
-  id: Pizza["id"];
-  size: sizeValues;
-}
+import { useContext } from "react";
+import OrderContext, { OrderedPizza, Pizza } from "../components/OrderContext";
 
 export interface Inputs {
   name: string;
@@ -23,7 +17,7 @@ usePizzaProps): {
   addToOrder: (pizza: OrderedPizza) => void;
   removeFromOrder: (ix: number) => void;
 } {
-  const [order, setOrder] = useState<OrderedPizza[]>([]);
+  const [order, setOrder] = useContext(OrderContext);
   function addToOrder(orderedPizza: OrderedPizza): void {
     setOrder([...order, orderedPizza]);
   }
