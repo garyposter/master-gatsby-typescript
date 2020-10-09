@@ -9,6 +9,7 @@ import OrderStyles from "../styles/OrderStyles";
 import MenuItemStyles from "../styles/MenuItemStyles";
 import usePizza, { Inputs } from "../utils/usePizza";
 import PizzaOrder from "../components/PizzaOrder";
+import calculateOrderTotal from "../utils/calculateOrderTotal";
 
 // formik is popular, who knew.
 
@@ -78,6 +79,12 @@ export default function OrderPage({
             order={order}
             removeFromOrder={removeFromOrder}
           />
+        </fieldset>
+        <fieldset>
+          <h3>
+            Your total is {formatMoney(calculateOrderTotal(order, pizzas))}
+          </h3>
+          <button type="submit">Order ahead</button>
         </fieldset>
       </OrderStyles>
     </>
